@@ -1,5 +1,4 @@
-# Blug
-![blug icon](./icons/blug-icon.svg)  
+<img src="./icons/blug-icon.svg" alt="blug-icon" width="128px"></img> 
 Blug is a tiny performant markdown blog
 ## API Layout
 ```
