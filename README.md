@@ -5,6 +5,7 @@ Blug is a tiny performant markdown blog
 POST /login
 POST /post
 GET /post
+UPDATE /post
 DELETE /post
 GET /all
 ```
