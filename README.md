@@ -1,4 +1,5 @@
 # Blug
+![blug icon](./icons/blug-icon.svg)  
 Blug is a tiny performant markdown blog
 ## API Layout
 ```
