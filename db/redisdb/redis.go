@@ -37,19 +37,19 @@ func (r *RedisDB) CreatePost(post *models.Post) error {
 }
 
 func (r *RedisDB) GetPost(id int) (*models.Post, error) {
-	var post *models.Post
+	var post models.Post
 
-	postJson, err := redis.Bytes(r.conn.Do("GET", "post:"+strconv.Itoa(id)))
+	postJSON, err := redis.Bytes(r.conn.Do("GET", "post:"+strconv.Itoa(id)))
 	if err != nil {
 		return nil, err
 	}
 
-	err = json.Unmarshal(postJson, post)
+	err = json.Unmarshal(postJSON, &post)
 	if err != nil {
 		return nil, err
 	}
 
-	return post, err
+	return &post, err
 }
 
 func (r *RedisDB) DeletePost(id int) error {

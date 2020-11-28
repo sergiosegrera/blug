@@ -8,10 +8,11 @@ import (
 	"github.com/sergiosegrera/blug/service"
 )
 
+// MakePostPostHandler creates a http handler for the CreatePost() endpoint of the service
 func MakePostPostHandler(svc service.Service) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		request := struct {
-			Id       int    `json:"int"`
+			ID       int    `json:"id"`
 			Title    string `json:"title"`
 			Markdown string `json:"markdown"`
 		}{}
@@ -22,7 +23,7 @@ func MakePostPostHandler(svc service.Service) func(w http.ResponseWriter, r *htt
 		}
 
 		post := &models.Post{
-			Id:       request.Id,
+			Id:       request.ID,
 			Title:    request.Title,
 			Markdown: request.Markdown,
 		}

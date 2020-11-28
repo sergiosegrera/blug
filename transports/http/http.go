@@ -16,9 +16,9 @@ func Serve(svc service.Service, conf *config.Config) error {
 	router.Use(middleware.Compress(5, "gzip"))
 	router.Use(middleware.Logger)
 
-	router.Post("/post", handlers.MakePostPostHandler(svc))
-	// router.Get("/post", handlers.MakeGetPostHandler(svc))
-	// router.Delete("/post", handlers.MakeDeletePostHandler(svc))
+	router.Post("/api/post", handlers.MakePostPostHandler(svc))
+	router.Get("/api/post/{id}", handlers.MakeGetPostHandler(svc))
+	// router.Delete("/api/post/{id}", handlers.MakeDeletePostHandler(svc))
 
 	// TODO: Front end static delivery
 
