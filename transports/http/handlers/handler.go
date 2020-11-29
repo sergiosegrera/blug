@@ -13,3 +13,7 @@ func JSON(w http.ResponseWriter, code int, data interface{}) {
 	w.WriteHeader(code)
 	json.NewEncoder(w).Encode(data)
 }
+
+func HTML(w http.ResponseWriter, code int, file string) {
+	
+}
