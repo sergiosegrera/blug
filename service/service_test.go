@@ -13,7 +13,6 @@ import (
 var service *BlugService
 
 func TestMain(m *testing.M) {
-
 	db, _ := mockdb.New(nil)
 	service = &BlugService{
 		DB:     db,

@@ -22,7 +22,7 @@ func MakeGetPostHandler(svc service.Service) func(w http.ResponseWriter, r *http
 		post, err := svc.GetPost(r.Context(), id)
 		// TODO: post not exist error, 404?
 		if err != nil {
-			JSON(w, 500, message{"error": "Could not get post"})
+			JSON(w, 404, message{"error": "Post not found"})
 			return
 		}
 
