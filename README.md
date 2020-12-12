@@ -1,4 +1,4 @@
-<img src="./front/images/blug-icon.svg" alt="blug-icon" width="128px"></img>  
+<img src="./front/static/images/blug-icon.svg" alt="blug-icon" width="128px"></img>  
 Blug is a tiny performant markdown blog
 ## API Layout
 ```
