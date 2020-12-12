@@ -5,7 +5,8 @@ import (
 	"os/signal"
 
 	"github.com/sergiosegrera/blug/config"
-	"github.com/sergiosegrera/blug/db/redisdb"
+	"github.com/sergiosegrera/blug/db/mockdb"
+	"github.com/sergiosegrera/blug/models"
 	"github.com/sergiosegrera/blug/service"
 	"github.com/sergiosegrera/blug/transports/http"
 	"go.uber.org/zap"
@@ -23,7 +24,14 @@ func main() {
 	defer logger.Sync()
 
 	// Connect to db
-	db, err := redisdb.New(conf)
+	//	db, err := redisdb.New(conf)
+	db, err := mockdb.New(conf)
+	db.CreatePost(&models.Post{
+		Id:       0,
+		Title:    "Lea",
+		Html:     "<h1>Allo Lea</h1>",
+		Markdown: "# Allo Lea",
+	})
 	if err != nil {
 		logger.Fatal("error connecting to db")
 	}

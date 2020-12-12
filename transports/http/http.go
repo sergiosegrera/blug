@@ -21,7 +21,8 @@ func Serve(svc service.Service, conf *config.Config) error {
 	// router.Delete("/api/post/{id}", handlers.MakeDeletePostHandler(svc))
 
 	// TODO: Front end static delivery
-	router.Get("/", GetHomeHandler)
+	router.Get("/", handlers.HomeHandler)
+	router.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("./front/static"))))
 
 	return http.ListenAndServe(fmt.Sprintf(":%v", conf.HttpPort), router)
 }

@@ -6,6 +6,7 @@ function setup() {
     fetch("/api/post/" + 0)
         .then(response => response.json())
         .then(post => {
-            console.log(post);
+            document.title = post.title;
+            document.querySelector("body").innerHTML = post.html;
         })
 }

@@ -14,6 +14,8 @@ func JSON(w http.ResponseWriter, code int, data interface{}) {
 	json.NewEncoder(w).Encode(data)
 }
 
-func HTML(w http.ResponseWriter, code int, file string) {
-	
+func HTML(w http.ResponseWriter, r *http.Request, code int, file string) {
+	w.Header().Set("Content-Type", "text/html")
+	w.WriteHeader(code)
+	http.ServeFile(w, r, "./front/templates/"+file)
 }
