@@ -23,7 +23,7 @@ func MakePostPostHandler(svc service.Service) func(w http.ResponseWriter, r *htt
 		}
 
 		post := &models.Post{
-			Id:       request.ID,
+			ID:       request.ID,
 			Title:    request.Title,
 			Markdown: request.Markdown,
 		}

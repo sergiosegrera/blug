@@ -11,6 +11,7 @@ import (
 	"github.com/sergiosegrera/blug/transports/http/handlers"
 )
 
+// Serve creates the http server
 func Serve(svc service.Service, conf *config.Config) error {
 	router := chi.NewRouter()
 	router.Use(middleware.Compress(5, "gzip"))

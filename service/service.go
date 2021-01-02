@@ -1,3 +1,4 @@
+// Package service contains the business logic of the Blug service
 package service
 
 import (
@@ -11,6 +12,7 @@ import (
 	"go.uber.org/zap"
 )
 
+// Service an interface with the business logic of Blug
 type Service interface {
 	// TODO: Auth
 	// Login(context.Context, string) (string, error)
@@ -21,17 +23,19 @@ type Service interface {
 	// GetAll(context.Context)
 }
 
+// BlugService implements Service
 type BlugService struct {
 	DB     db.DB
 	Logger *zap.Logger
 }
 
+// CreatePost inserts a post into the db, converting markdown to html
 func (s *BlugService) CreatePost(ctx context.Context, post *models.Post) (err error) {
 	defer func(begin time.Time) {
 		s.Logger.Info(
 			"blug",
 			zap.String("method", "createpost"),
-			zap.Int("id", post.Id),
+			zap.Int("id", post.ID),
 			zap.NamedError("err", err),
 			zap.Duration("took", time.Since(begin)),
 		)
@@ -41,13 +45,14 @@ func (s *BlugService) CreatePost(ctx context.Context, post *models.Post) (err er
 		[]byte(post.Markdown),
 		blackfriday.WithNoExtensions(),
 	)
-	post.Html = string(bluemonday.UGCPolicy().SanitizeBytes(unsafe))
+	post.HTML = string(bluemonday.UGCPolicy().SanitizeBytes(unsafe))
 
 	err = s.DB.CreatePost(post)
 
 	return err
 }
 
+// GetPost returns a post from the db by the given id
 func (s *BlugService) GetPost(ctx context.Context, id int) (post *models.Post, err error) {
 	defer func(begin time.Time) {
 		s.Logger.Info(
@@ -64,6 +69,7 @@ func (s *BlugService) GetPost(ctx context.Context, id int) (post *models.Post, e
 	return post, err
 }
 
+// DeletePost delets a post from the db by the given id
 func (s *BlugService) DeletePost(ctx context.Context, id int) (err error) {
 	defer func(begin time.Time) {
 		s.Logger.Info(

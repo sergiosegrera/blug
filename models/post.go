@@ -1,8 +1,9 @@
 package models
 
+// Post is the blug post data model
 type Post struct {
-	Id       int `json:"id"`
+	ID       int    `json:"id"`
 	Title    string `json:"title"`
-	Html     string `json:"html"`
+	HTML     string `json:"html"`
 	Markdown string `json:"markdown"`
 }

@@ -27,9 +27,9 @@ func main() {
 	//	db, err := redisdb.New(conf)
 	db, err := mockdb.New(conf)
 	db.CreatePost(&models.Post{
-		Id:       0,
+		ID:       0,
 		Title:    "Lea",
-		Html:     "<h1>Allo Lea</h1>",
+		HTML:     "<h1>Allo Lea</h1>",
 		Markdown: "# Allo Lea",
 	})
 	if err != nil {
